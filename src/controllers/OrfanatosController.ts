@@ -21,47 +21,82 @@ export default {
 
     const requisicaoImagens = requisicao.files as Express.Multer.File[];
     
-    const imagens = requisicaoImagens.map(imagem => {
-      return { diretorio: imagem.filename }
-    });
-
-    const data = {
-      nome,
-      latitude,
-      longitude,
-      sobre,
-      instrucoes,
-      horario_atendimento,
-      aberto_fim_semana,
-      imagens
-    };
-
-    const schema = Yup.object().shape({
-      nome: Yup.string().required('Nome é um campo obrigatório'),
-      latitude: Yup.number().required(),
-      longitude: Yup.number().required(),
-      sobre: Yup.string().required().max(300),
-      instrucoes: Yup.string().required(),
-      horario_atendimento: Yup.string().required(),
-      aberto_fim_semana: Yup.boolean().required(),
-      imagens: Yup.array(
-        Yup.object().shape({
-          diretorio: Yup.string().required()
-        })
-      )
-    });    
-
-    await schema.validate(data, {
-      abortEarly: false,      
-    });
-
-    const finalData = schema.cast(data) as Orfanato;
-
-    const orfanato = orfanatosRepository.create(finalData);
+    if(requisicaoImagens){
+      const imagens = requisicaoImagens.map(imagem => {
+        return { diretorio: imagem.filename }
+      });
   
-    await orfanatosRepository.save(orfanato);
+      const data = {
+        nome,
+        latitude,
+        longitude,
+        sobre,
+        instrucoes,
+        horario_atendimento,
+        aberto_fim_semana,
+        imagens
+      };
   
-    return resposta.status(201).json(orfanato);
+      const schema = Yup.object().shape({
+        nome: Yup.string().required('Nome é um campo obrigatório'),
+        latitude: Yup.number().required(),
+        longitude: Yup.number().required(),
+        sobre: Yup.string().required().max(300),
+        instrucoes: Yup.string().required(),
+        horario_atendimento: Yup.string().required(),
+        aberto_fim_semana: Yup.boolean().required(),
+        imagens: Yup.array(
+          Yup.object().shape({
+            diretorio: Yup.string().required()
+          })
+        )
+      });    
+  
+      await schema.validate(data, {
+        abortEarly: false,      
+      });
+  
+      const finalData = schema.cast(data) as Orfanato;
+  
+      const orfanato = orfanatosRepository.create(finalData);
+    
+      await orfanatosRepository.save(orfanato);
+    
+      return resposta.status(201).json(orfanato);
+    }
+    else {
+      const data = {
+        nome,
+        latitude,
+        longitude,
+        sobre,
+        instrucoes,
+        horario_atendimento,
+        aberto_fim_semana
+      };
+  
+      const schema = Yup.object().shape({
+        nome: Yup.string().required('Nome é um campo obrigatório'),
+        latitude: Yup.number().required(),
+        longitude: Yup.number().required(),
+        sobre: Yup.string().required().max(300),
+        instrucoes: Yup.string().required(),
+        horario_atendimento: Yup.string().required(),
+        aberto_fim_semana: Yup.boolean().required()        
+      });    
+  
+      await schema.validate(data, {
+        abortEarly: false,      
+      });
+  
+      const finalData = schema.cast(data) as Orfanato;
+  
+      const orfanato = orfanatosRepository.create(finalData);
+    
+      await orfanatosRepository.save(orfanato);
+    
+      return resposta.status(201).json(orfanato);
+    }    
   },
 
   async index(requisicao: Request, resposta: Response){
