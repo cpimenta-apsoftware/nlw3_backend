@@ -13,7 +13,7 @@ import './database/connection';
 import routes from './routes';
 import errorHandler from './errors/handler';
 
-const app = express();
+export const app = express();
 
 app.use(cors(
   // Para produção incluir origin para limitar o acesso à API
