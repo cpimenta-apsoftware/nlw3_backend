@@ -26,7 +26,7 @@ describe('Teste OrfanatosController', () => {
     // expect(loResultado.body.data).toBe('Registro de uma Orfanatos');
   });
 
-  it('Requisição de criação de uma Orfanatos deve retornar o status 201!', async () => {
+  it('Requisição de criação de uma Orfanatos deve retornar o status 201 com os dados do orfanato criado!', async () => {
     //Se a API tiver controle de autenticação de usuário
     // const loOrfanatos = await request(app).post(ApiRouteEnum.AuthLogin).send({
     //   email: "Orfanatos@email.com",
@@ -46,7 +46,7 @@ describe('Teste OrfanatosController', () => {
         aberto_fim_semana: true
       });
 
-    expect(loResultado.status).toBe(201);
-    // expect(loResultado.body.data).toBe('loResultadoado da criação de uma Orfanatos');
+    expect(loResultado.status).toBe(201);    
+    expect(loResultado.body.nome).toBe('Lar da Criança');
   });
 });
