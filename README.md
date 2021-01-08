@@ -10,7 +10,7 @@ Parte do conteúdo foi disponibilizado no NLW 3, evento realizado pela Rocketsea
 
 ## Execução
 ```sh
-cd nlw3_backend
+cd nlw3-backend
 yarn
 yarn typeorm migration:run
 yarn dev
