@@ -1,6 +1,6 @@
-# nlw3_backend
+# nlw3-backend
 
-API Rest para marcação de orfanatos em uma mapa com informações para promover visitas e acões de ajuda.
+API Rest desenvolvida com Express.js, para marcação de orfanatos em um mapa com informações para promover visitas e acões de ajuda.
 Parte do conteúdo foi disponibilizado no NLW 3, evento realizado pela Rocketseat (https://github.com/Rocketseat).
 
 ## Ambiente (Versões)
@@ -10,7 +10,7 @@ Parte do conteúdo foi disponibilizado no NLW 3, evento realizado pela Rocketsea
 
 ## Execução
 ```sh
-cd nlw3_backend
+cd nlw3-backend
 yarn
 yarn typeorm migration:run
 yarn dev
