@@ -17,15 +17,20 @@ yarn dev
 ```
 
 ## Testando a API
-### POST
+### Em execução -> POST
 ```sh
 curl -i -X POST "http://localhost:3333/orfanatos" -H "accept: */*" -H "Authorization: Abre-te Cézamo..." -H "Content-Type: application/json" -d "{\"nome\":\"Lar da Criança\",\"latitude\":-12.9694025,\"longitude\":-38.490993,\"sobre\":\"Foi fundado em 1963 a partir do sonho da adolescente Dulce Maria Goulart de Freitas. Mais informações em: http://lardacriancasalvador.org.br\",\"instrucoes\":\"Qualquer pessoa pode realizar visitas no Lar da Criança, desde que respeitados os dias e horários estabelecidos. Para agendar sua visita, entre em contato pelo telefone: (71) 3244-3795.\",\"horario_atendimento\":\"Das 8h até as 18h\",\"aberto_fim_semana\":true}"
 ```
 
-### GET
+### Em execução -> GET
 ```sh
 curl -s "http://localhost:3333/orfanatos" |jq
 curl -s "http://localhost:3333/orfanatos/1" |jq
+```
+
+### Jest
+```sh
+yarn test
 ```
 
 ## Roteiro para criação desse projeto
