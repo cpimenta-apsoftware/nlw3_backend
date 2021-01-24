@@ -1,6 +1,6 @@
 //import { ApiRouteEnum } from 'routes';
 import request from 'supertest';
-import { createConnection } from 'typeorm';
+import { createConnection, getConnection } from 'typeorm';
 import { app } from '../server';
 
 describe('Teste OrfanatosController', () => {
@@ -9,18 +9,18 @@ describe('Teste OrfanatosController', () => {
   });
 
   afterAll(async () => {
-    //pode ser utilizado para limpar ou fechar conexões
+    await getConnection().close();
   });
 
-  it('Requisição /Orfanatos deve retornar o status 200!', async () => {
-    const loResultado = await request(app).get('/Orfanatos');
+  it('Requisição /orfanatos deve retornar o status 200!', async () => {
+    const loResultado = await request(app).get('/orfanatos');
 
     expect(loResultado.status).toBe(200);
     // expect(loResultado.body.data).toBe('Registros de Orfanatos');
   });
 
-  it('Requisição /Orfanatos/:id deve retornar o status 200!', async () => {
-    const loResultado = await request(app).get('/Orfanatos/1');
+  it('Requisição /orfanatos/:id deve retornar o status 200!', async () => {
+    const loResultado = await request(app).get('/orfanatos/1');
 
     expect(loResultado.status).toBe(200);
     // expect(loResultado.body.data).toBe('Registro de uma Orfanatos');
@@ -34,7 +34,7 @@ describe('Teste OrfanatosController', () => {
     // });
     // expect(loOrfanatos.status).toBe(200);
 
-    const loResultado = await request(app).post('/Orfanatos')    
+    const loResultado = await request(app).post('/orfanatos')    
       // .set({ token: loOrfanatos.body.token })
       .send({
         nome: "Lar da Criança",

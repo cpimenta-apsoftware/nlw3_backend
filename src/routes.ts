@@ -3,6 +3,7 @@ import multer from 'multer';
 
 import uploadConfig from './config/upload';
 import OrfanatosController from './controllers/OrfanatosController';
+import UsuariosController from './controllers/UsuariosController';
 
 // import { getRepository } from 'typeorm';
 // import Orfanato from './models/Orfanato';
@@ -51,5 +52,8 @@ const upload = multer(uploadConfig);
 routes.post('/orfanatos', upload.array('imagens'), OrfanatosController.create);
 routes.get('/orfanatos', OrfanatosController.index);
 routes.get('/orfanatos/:id', OrfanatosController.show);
+routes.post('/usuarios', UsuariosController.create);
+routes.get('/usuarios', UsuariosController.index);
+routes.get('/usuarios/:id', UsuariosController.show);
 
 export default routes;
