@@ -47,10 +47,10 @@ export class criarOrfanatos1602786442280 implements MigrationInterface {
         {
           name: 'aberto_fim_semana',
           type: 'boolean',
-          default: false
+          default: 0
         }      
       ]      
-    }))
+    }));
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
